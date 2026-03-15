@@ -1,7 +1,7 @@
 export default function Footer() {
   return (
     <footer className="border-t border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="mx-auto flex h-14 max-w-5xl items-center justify-center px-4">
+      <div className="mx-auto flex h-14 w-[75%] items-center justify-center">
         <p className="text-sm text-zinc-500 dark:text-zinc-400">
           Powered by{" "}
           <a
