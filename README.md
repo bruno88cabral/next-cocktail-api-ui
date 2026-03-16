@@ -30,6 +30,16 @@ yarn dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+### Optional environment variable
+
+You can override the public cocktail API base URL:
+
+```bash
+NEXT_PUBLIC_COCKTAIL_API_BASE_URL=https://www.thecocktaildb.com/api/json/v1/1
+```
+
+If this variable is not defined, the app uses the default Cocktail DB public URL.
+
 ## Project architecture
 
 ```text

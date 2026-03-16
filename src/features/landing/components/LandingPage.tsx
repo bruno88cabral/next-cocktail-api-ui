@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
@@ -10,6 +12,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
+import { useDrinks } from "@/features/drinks/hooks/useDrinks";
 import { cn } from "@/lib/utils";
 import type { LandingPageData } from "../types";
 
@@ -18,6 +21,8 @@ type LandingPageProps = {
 };
 
 export default function LandingPage({ data }: LandingPageProps) {
+  const { featuredDrinks, loading, error } = useDrinks();
+
   return (
     <main className="mx-auto w-[75%] py-12 md:py-16">
       <section className="rounded-2xl border border-zinc-200 bg-white p-8 dark:border-zinc-800 dark:bg-zinc-950 md:p-12">
@@ -50,27 +55,38 @@ export default function LandingPage({ data }: LandingPageProps) {
           <h2 className="text-xl font-semibold tracking-tight text-zinc-900 dark:text-zinc-50">
             Featured drinks
           </h2>
-          <span className="text-sm text-zinc-500 dark:text-zinc-400">Mocked data</span>
+          <span className="text-sm text-zinc-500 dark:text-zinc-400">API data</span>
         </div>
 
+        {loading && <p className="mb-4 text-sm text-zinc-500 dark:text-zinc-400">Loading drinks...</p>}
+        {error && (
+          <p className="mb-4 text-sm text-red-600 dark:text-red-400">Failed to load drinks.</p>
+        )}
+
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
-          {data.featuredDrinks.map((drink) => (
+          {featuredDrinks.map((drink) => (
             <Card
-              key={drink.id}
+              key={drink.idDrink}
               className="h-full gap-0 shadow-none"
             >
               <CardHeader>
-                <CardTitle className="text-lg">{drink.name}</CardTitle>
+                <CardTitle className="text-lg">{drink.strDrink}</CardTitle>
                 <CardAction>
                   <Badge
-                    variant={drink.alcoholic ? "alcoholic" : "nonAlcoholic"}
+                    variant={
+                      (drink.strAlcoholic ?? "").toLowerCase().includes("non")
+                        ? "nonAlcoholic"
+                        : "alcoholic"
+                    }
                     className="px-2.5 py-1"
                   >
-                    {drink.alcoholic ? "Alcoholic" : "Non-alcoholic"}
+                    {(drink.strAlcoholic ?? "").toLowerCase().includes("non")
+                      ? "Non-alcoholic"
+                      : "Alcoholic"}
                   </Badge>
                 </CardAction>
                 <CardDescription className="text-sm leading-6">
-                  {drink.description}
+                  {drink.strInstructions ?? "No description available."}
                 </CardDescription>
               </CardHeader>
 
@@ -78,16 +94,24 @@ export default function LandingPage({ data }: LandingPageProps) {
                 <dl className="space-y-2 text-sm">
                   <div className="flex justify-between gap-3">
                     <dt className="text-zinc-500 dark:text-zinc-400">Category</dt>
-                    <dd className="font-medium text-zinc-700 dark:text-zinc-200">{drink.category}</dd>
+                    <dd className="font-medium text-zinc-700 dark:text-zinc-200">
+                      {drink.strCategory ?? "Unknown"}
+                    </dd>
                   </div>
                   <div className="flex justify-between gap-3">
                     <dt className="text-zinc-500 dark:text-zinc-400">Glass</dt>
-                    <dd className="font-medium text-zinc-700 dark:text-zinc-200">{drink.glass}</dd>
+                    <dd className="font-medium text-zinc-700 dark:text-zinc-200">
+                      {drink.strGlass ?? "Unknown"}
+                    </dd>
                   </div>
                 </dl>
 
                 <div className="flex flex-wrap gap-2">
-                  {drink.tags.map((tag) => (
+                  {(drink.strTags
+                    ?.split(",")
+                    .map((tag) => tag.trim())
+                    .filter(Boolean) ?? []
+                  ).map((tag) => (
                     <Badge
                       key={tag}
                       variant="tag"
@@ -101,7 +125,7 @@ export default function LandingPage({ data }: LandingPageProps) {
 
               <CardFooter>
                 <Link
-                  href={`/drinks/${drink.id}`}
+                  href={`/drinks/${drink.idDrink}`}
                   className="inline-flex text-sm font-medium text-zinc-700 underline underline-offset-4 hover:text-zinc-900 dark:text-zinc-300 dark:hover:text-zinc-50"
                 >
                   View details
