@@ -9,8 +9,6 @@ function normalizeDrinksResponse(data: DrinksApiResponse): Drink[] {
   return data.drinks;
 }
 
-<<<<<<< Updated upstream
-=======
 export async function fetchDrinksByLetter(letter: string): Promise<Drink[]> {
   const response = await fetch(`${API_BASE_URL}/search.php?f=${encodeURIComponent(letter)}`);
 
@@ -23,7 +21,6 @@ export async function fetchDrinksByLetter(letter: string): Promise<Drink[]> {
   return normalizeDrinksResponse(data);
 }
 
->>>>>>> Stashed changes
 export async function fetchDrinks(): Promise<Drink[]> {
   const response = await fetch(`${API_BASE_URL}/search.php?f=a`);
 
