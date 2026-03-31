@@ -9,6 +9,21 @@ function normalizeDrinksResponse(data: DrinksApiResponse): Drink[] {
   return data.drinks;
 }
 
+<<<<<<< Updated upstream
+=======
+export async function fetchDrinksByLetter(letter: string): Promise<Drink[]> {
+  const response = await fetch(`${API_BASE_URL}/search.php?f=${encodeURIComponent(letter)}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch drinks: ${response.statusText}`);
+  }
+
+  const data: DrinksApiResponse = await response.json();
+
+  return normalizeDrinksResponse(data);
+}
+
+>>>>>>> Stashed changes
 export async function fetchDrinks(): Promise<Drink[]> {
   const response = await fetch(`${API_BASE_URL}/search.php?f=a`);
 

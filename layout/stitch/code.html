@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            border: "hsl(240 3.7% 15.9%)",
+            input: "hsl(240 3.7% 15.9%)",
+            ring: "hsl(240 4.9% 83.9%)",
+            background: "hsl(240 10% 3.9%)",
+            foreground: "hsl(0 0% 98%)",
+            primary: {
+              DEFAULT: "hsl(35 91% 69%)",
+              foreground: "hsl(240 5.9% 10%)",
+            },
+            secondary: {
+              DEFAULT: "hsl(240 3.7% 15.9%)",
+              foreground: "hsl(0 0% 98%)",
+            },
+            destructive: {
+              DEFAULT: "hsl(0 62.8% 30.6%)",
+              foreground: "hsl(0 0% 98%)",
+            },
+            muted: {
+              DEFAULT: "hsl(240 3.7% 15.9%)",
+              foreground: "hsl(240 5% 64.9%)",
+            },
+            accent: {
+              DEFAULT: "hsl(240 3.7% 15.9%)",
+              foreground: "hsl(0 0% 98%)",
+            },
+            popover: {
+              DEFAULT: "hsl(240 10% 3.9%)",
+              foreground: "hsl(0 0% 98%)",
+            },
+            card: {
+              DEFAULT: "hsl(240 10% 3.9%)",
+              foreground: "hsl(0 0% 98%)",
+            },
+            "on-surface-variant": "#d6c3b1",
+            "outline": "#9f8e7d",
+            "outline-variant": "#524437",
+          },
+          fontFamily: {
+            "headline": ["Noto Serif"],
+            "body": ["Manrope"],
+            "label": ["Manrope"]
+          },
+          borderRadius: {
+            lg: "0.5rem",
+            md: "calc(0.5rem - 2px)",
+            sm: "calc(0.5rem - 4px)",
+          },
+        },
+      },
+    }
+  </script>
+<style>
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 300, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    /* Shadcn-like focus ring */
+    .focus-ring {
+      @apply focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background;
+    }
+  </style>
+</head>
+<body class="bg-background text-foreground font-body selection:bg-primary/30">
+<!-- Shared Component: TopNavBar -->
+<nav class="fixed top-0 w-full z-50 bg-background/80 backdrop-blur-md border-b border-border flex justify-between items-center px-6 md:px-12 py-4">
+<div class="text-xl font-serif italic text-primary">The Epicurean Lens</div>
+<div class="hidden md:flex items-center space-x-8">
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Pairings</a>
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Recipes</a>
+<a class="text-sm font-medium text-primary" href="#">Cocktails</a>
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Atelier</a>
+</div>
+<div class="flex items-center gap-4">
+<div class="relative hidden sm:block">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">search</span>
+<input class="flex h-9 w-64 rounded-md border border-input bg-transparent px-10 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50" placeholder="Search archives..." type="text"/>
+</div>
+<button class="inline-flex items-center justify-center rounded-md text-sm font-medium transition-colors focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:pointer-events-none disabled:opacity-50 hover:bg-accent hover:text-accent-foreground h-9 w-9">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<main class="pt-24 pb-20 px-6 md:px-12 max-w-[1400px] mx-auto">
+<!-- Hero Section -->
+<header class="mb-12">
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-6">
+<div class="max-w-2xl">
+<p class="text-primary text-sm font-medium tracking-wider uppercase mb-3">Mixology Collection</p>
+<h1 class="text-4xl md:text-6xl font-headline font-bold tracking-tight leading-tight">
+            The Liquid <span class="italic font-normal text-primary">Philosophy</span>
+</h1>
+</div>
+<p class="text-muted-foreground text-base max-w-sm leading-relaxed">
+          An curated archive of spirits, botanical infusions, and the precise geometry of a perfect pour.
+        </p>
+</div>
+</header>
+<!-- Filter & Search Bar Cluster - Updated to Shadcn Patterns -->
+<section class="mb-12 flex flex-col gap-6">
+<div class="flex flex-col md:flex-row gap-4 items-end">
+<div class="w-full md:max-w-sm space-y-2">
+<label class="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70">Search Drinks</label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-muted-foreground text-sm">search</span>
+<input class="flex h-10 w-full rounded-md border border-input bg-background px-10 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50" placeholder="By name or ingredient..." type="text"/>
+</div>
+</div>
+<button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-8">
+            Refine Results
+        </button>
+</div>
+<div class="flex flex-wrap gap-8 items-start pt-2 border-t border-border">
+<!-- Spirit Base Facet -->
+<div class="space-y-3">
+<h4 class="text-sm font-semibold tracking-tight">Spirit Base</h4>
+<div class="flex flex-wrap gap-2">
+<!-- Badge Component: Selected -->
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">Gin</button>
+<!-- Badge Component: Outline -->
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Whiskey</button>
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Rum</button>
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Tequila</button>
+</div>
+</div>
+<!-- Flavor Profile Facet -->
+<div class="space-y-3">
+<h4 class="text-sm font-semibold tracking-tight">Flavor Profile</h4>
+<div class="flex flex-wrap gap-2">
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Citrus</button>
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-primary text-primary-foreground hover:bg-primary/80">Sweet</button>
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Spicy</button>
+<button class="inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-border bg-transparent text-foreground hover:bg-accent hover:text-accent-foreground">Bitter</button>
+</div>
+</div>
+</div>
+</section>
+<!-- Cocktails Grid - Updated to Shadcn Card Patterns -->
+<section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+<!-- Card 1 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAK3ZEyMXd0N7U7qUM_F4FURx1zO5OYAmF_OCPBAJqEAKoQk84EuweGLUF_kLeNBijT3DwZhAWM_m7qevXTV1SOpPBTzAhTpse1xLYREp-uLvHTO0Vlkfo1AWnJgYE8VjnFvfcByxCvqYJrb0Jiscf4ZD1MXVfKRZ6df5SLqy-eD4rDcJVPiPXHtYJs8sG3mMJF_PLtoW7MmNSIPp8hxAcMqp32l2pjHALVxKPqHESWDhJ2Ik_qDzhd5jlsnPcDnoO9aOgekOvquSfz"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-secondary text-secondary-foreground">HERBAL</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 border-transparent bg-muted text-muted-foreground">CLASSIC</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">The Smoked Negroni</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            A cedar-smoked variation of the Italian icon, utilizing aged botanical gin and charred orange zest.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Truffle Arancini</a>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDgXvWTlWlprTrdarkbFy8CFLouf9UddgLxTwxiSJxNjpiiXdIauQyrDwLFHQfb-ycMHqAOm59AP5No14Q3_qkFI2acpiVqNiTtKWqLAY-y6m4DzSw0GN5H5R_rhJlOxU_nt4kM4cS9t-dgZVQT7uhph3zSx8qPchK6Mq9tK4xKb1PIPfT1k1efhUcV01uyF8KFpA0Lt7WdftSYQfmr9nuKXzXb_e9xEpvesyoDA5gpw13l7775FtGnjDWe5Y0CzMAkGU7vebC0BDCr"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-secondary text-secondary-foreground">FLORAL</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-primary/20 text-primary">SIGNATURE</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">Botanical Mist</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            An ethereal blend of elderflower, Japanese gin, and a whisper of clarified grapefruit juice.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Seared Scallops</a>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBIMMP5GQBMSFTwseynNKkvSEgfCI3FBSgMFTYIJB3C7LB5e4WDcod9i-C-O039OZjZxGexYPHEnbF5ftBKo68gAQqtFQZbrngMx0RgY844Xg4guz2fjZlwJK_vN_w8VSTpJUHY07mhnGxy_Lo5PkLpUUqo86ikYSroQROGsMULn2H4zQ3TDbfYQADWobGU8K26FHe0Yz7Bac_YWZsB8-7wsdliNU9zL1j5XUtb1QYpft_ROarsrD_tDjHPDGeOhEHDDiYFGqVmaCLi"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-secondary text-secondary-foreground">WOODY</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-muted text-muted-foreground">AFTER-HOURS</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">Old World Sazerac</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            Rye whiskey rinsed with absinthe and sweetened with a reduction of honey and mission fig.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Dark Chocolate Torte</a>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAF8v2F-O1-JSIW8jfDxvXaRJvmGmuYLBdR4bAbb8LKrI0ad4163GhEhwTohp4TVCcjXSIJ7RJ7Ui6pWw8mZc8JoC_FQFM6ZLsgikC9tkkePxUGQm7AvKNC-HhS5vvb50TJrUDdBEa9igziXhDUw8Lqhes2DCL3Ah0RX-bFf_HMUTRQPHUxn2rWuJt1ARCPdKpN6OBRZz1heMQg1Ko2Y8-SLLh8E8FRGFNaB5pJWtBlJZLcJr5sAM04RIOMoH_JeUsZTY2ap8TVOaeB"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-secondary text-secondary-foreground">CITRUS</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-muted text-muted-foreground">APERITIF</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">Citrus Reviver</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            A crisp exploration of lemon oil, white vermouth, and a splash of sparkling mineral water.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Fresh Oysters</a>
+</div>
+</div>
+</div>
+<!-- Card 5 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4n_QA54PNI1qyFnKI6H51M43iBCLUzT2QH0LKWy5d-G42n3HybPwMD84oGVBv6mTibLPyQvh7lcBHGLsaMFImAEvGD3_8P526r15zO6Dxi7bLfCbW5FSdPg4_g6uruy_IzgtRgujCWsJxYZO9czkqf1EsLUQTeAZkSZQKwPEeqINWafL6RE6AwUIzwIPSCrvF7HJf_BFrBBrxSzW4WT3us3paIKddg5JSjKHGCQZxhuw_RbW0JZp4nwuZUcQBwQ5ihbSlrfQwneYS"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-secondary text-secondary-foreground">FRESH</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-muted text-muted-foreground">SUMMER</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">Copper Mint Mule</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            Hand-pressed ginger root paired with artisanal vodka and a generous garden of heirloom mint.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Spicy Tuna Crudo</a>
+</div>
+</div>
+</div>
+<!-- Card 6 -->
+<div class="rounded-lg border border-border bg-card text-card-foreground shadow-sm flex flex-col overflow-hidden group">
+<div class="aspect-[4/5] relative overflow-hidden">
+<img alt="Cocktail" class="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDH1e7p6aHZ6AJHyn_YWXleTjS0BRB4I-WEBwR3oeJb_Jh6zLLCs61qX05uJewrY2In9QT_-P1uMIQRSto0SpaZQPAoHJpMdghSOhV0pGYlWMmkB1gnWFrfCBaz-D-vC5oQ0Gp6TWU_84aKzz63I1UpqPQyf1vNz4SCXmdRhBShTT6aiM2giWXFXDRbNR2Ke1rfQ_5V8n4-iZ-uD-rUnO97SwobFOV5sMfuGRv2ZNxskfpNbTAq18RP9Le7mkXnKh6Pby0sBIGLAsi3"/>
+<div class="absolute top-3 left-3 flex gap-1.5">
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-destructive/20 text-destructive-foreground">SPICY</span>
+<span class="inline-flex items-center rounded-full border px-2 py-0.5 text-[10px] font-semibold border-transparent bg-muted text-muted-foreground">BOLD</span>
+</div>
+</div>
+<div class="p-6 flex flex-col flex-grow space-y-2">
+<div class="flex justify-between items-start">
+<h3 class="text-xl font-headline font-bold leading-none tracking-tight group-hover:text-primary transition-colors">The Ancho Martini</h3>
+<button class="text-muted-foreground hover:text-primary transition-colors">
+<span class="material-symbols-outlined text-xl" data-icon="bookmark">bookmark</span>
+</button>
+</div>
+<p class="text-sm text-muted-foreground leading-relaxed flex-grow">
+            A daring infusion of ancho chili liqueur and blanco tequila, softened by a touch of organic agave.
+        </p>
+<div class="pt-4 border-t border-border flex items-center gap-2">
+<span class="text-[10px] uppercase font-bold text-muted-foreground">Pairs with:</span>
+<a class="text-xs text-primary hover:underline underline-offset-4" href="#">Chili Lime Shrimp</a>
+</div>
+</div>
+</div>
+</section>
+<!-- Pagination/Load More - Shadcn Button Pattern -->
+<div class="mt-16 flex justify-center">
+<button class="inline-flex items-center justify-center rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 border border-input bg-background hover:bg-accent hover:text-accent-foreground h-11 px-10">
+        Explore more creations
+      </button>
+</div>
+</main>
+<!-- Shared Component: Footer -->
+<footer class="bg-card border-t border-border w-full mt-20">
+<div class="max-w-[1400px] mx-auto flex flex-col md:flex-row justify-between items-center px-6 md:px-12 py-12 gap-8">
+<div class="flex flex-col gap-3 items-center md:items-start text-center md:text-left">
+<div class="text-lg font-serif italic text-primary">The Epicurean Lens</div>
+<p class="text-muted-foreground text-sm max-w-xs">Curating the finest intersections of taste, visual art, and culinary precision.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-8">
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Journal</a>
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Newsletter</a>
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Privacy</a>
+<a class="text-sm font-medium text-muted-foreground hover:text-foreground transition-colors" href="#">Terms</a>
+</div>
+<div class="text-muted-foreground text-xs">
+            © 2024 The Epicurean Lens. All Rights Reserved.
+        </div>
+</div>
+</footer>
+</body></html>
