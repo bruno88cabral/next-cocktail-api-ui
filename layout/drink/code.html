@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Serif:ital,wght@0,400;0,700;1,400&amp;family=Manrope:wght@300;400;600&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "on-tertiary": "#382f22",
+                        "on-surface-variant": "#d6c3b1",
+                        "on-secondary-fixed-variant": "#3a4c2f",
+                        "surface-variant": "#353535",
+                        "on-background": "#e5e2e1",
+                        "inverse-surface": "#e5e2e1",
+                        "on-tertiary-fixed-variant": "#4f4537",
+                        "on-primary-fixed": "#2b1700",
+                        "surface": "#131313",
+                        "on-surface": "#e5e2e1",
+                        "primary": "#ffb961",
+                        "on-tertiary-fixed": "#221a0e",
+                        "error": "#ffb4ab",
+                        "error-container": "#93000a",
+                        "surface-bright": "#393939",
+                        "inverse-on-surface": "#313030",
+                        "on-primary": "#472a00",
+                        "tertiary-fixed-dim": "#d3c4b1",
+                        "on-error": "#690005",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-low": "#1c1b1b",
+                        "on-secondary-container": "#a7bb97",
+                        "surface-tint": "#ffb961",
+                        "on-primary-fixed-variant": "#663e00",
+                        "secondary-fixed": "#d4e9c2",
+                        "secondary-container": "#3a4c2f",
+                        "inverse-primary": "#865300",
+                        "tertiary-fixed": "#f0e0cc",
+                        "background": "#131313",
+                        "tertiary": "#d3c4b1",
+                        "tertiary-container": "#a79a88",
+                        "primary-fixed-dim": "#ffb961",
+                        "surface-container-lowest": "#0e0e0e",
+                        "outline": "#9f8e7d",
+                        "primary-container": "#d28e32",
+                        "surface-container": "#20201f",
+                        "on-tertiary-container": "#3b3224",
+                        "primary-fixed": "#ffddb9",
+                        "surface-container-highest": "#353535",
+                        "surface-dim": "#131313",
+                        "surface-container-high": "#2a2a2a",
+                        "secondary-fixed-dim": "#b8cda8",
+                        "outline-variant": "#524437",
+                        "on-primary-container": "#4c2d00",
+                        "on-secondary": "#24351a",
+                        "secondary": "#b8cda8",
+                        "on-secondary-fixed": "#101f07"
+                    },
+                    fontFamily: {
+                        "headline": ["Noto Serif"],
+                        "body": ["Manrope"],
+                        "label": ["Manrope"]
+                    },
+                    borderRadius: { "DEFAULT": "0.125rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+                },
+            },
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+            vertical-align: middle;
+        }
+        body {
+            background-color: #131313;
+            color: #e5e2e1;
+        }
+        .hero-scrim {
+            background: linear-gradient(to top, #131313 0%, rgba(19, 19, 19, 0.4) 50%, transparent 100%);
+        }
+        /* Shadcn UI Card & Badge Emulation */
+        .card {
+            background-color: #1c1b1b;
+            border: 1px solid #353535;
+            border-radius: 0.75rem;
+            overflow: hidden;
+        }
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            border-radius: 9999px;
+            border: 1px solid transparent;
+            padding: 0.125rem 0.625rem;
+            font-size: 0.75rem;
+            font-weight: 600;
+            transition-property: color, background-color, border-color;
+            transition-duration: 300ms;
+        }
+        .badge-outline {
+            border-color: #524437;
+            color: #d6c3b1;
+        }
+        .badge-secondary {
+            background-color: #3a4c2f;
+            color: #b8cda8;
+        }
+        .badge-primary {
+            background-color: rgba(255, 185, 97, 0.1);
+            border-color: rgba(255, 185, 97, 0.3);
+            color: #ffb961;
+        }
+    </style>
+</head>
+<body class="font-body selection:bg-primary selection:text-on-primary">
+<!-- TopNavBar Component -->
+<nav class="fixed top-0 w-full z-50 bg-neutral-950/60 backdrop-blur-xl border-b border-white/5 flex justify-between items-center px-12 py-6 max-w-full">
+<div class="text-2xl font-serif italic text-amber-500">The Epicurean Lens</div>
+<div class="hidden md:flex items-center gap-10">
+<a class="font-serif tracking-tight text-neutral-400 hover:text-neutral-100 transition-colors" href="#">Pairings</a>
+<a class="font-serif tracking-tight text-neutral-400 hover:text-neutral-100 transition-colors" href="#">Recipes</a>
+<a class="font-serif tracking-tight text-amber-400 border-b border-amber-500/30 pb-1" href="#">Cocktails</a>
+<a class="font-serif tracking-tight text-neutral-400 hover:text-neutral-100 transition-colors" href="#">Atelier</a>
+</div>
+<div class="flex items-center gap-6">
+<button class="text-neutral-100 p-2 hover:bg-white/5 transition-all duration-300 rounded-full scale-95 active:opacity-80 transition-transform">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</nav>
+<main>
+<!-- Hero Section -->
+<section class="relative h-[921px] w-full overflow-hidden">
+<img alt="The Smoked Amber Old Fashioned" class="absolute inset-0 w-full h-full object-cover" data-alt="Close-up of a sophisticated smoked old fashioned cocktail in a crystal glass with a large ice cube and orange peel, dramatic lighting, moody dark bar setting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuBoJuTSSBx_-5Hnd1_fDaH8qbCt2s311oyHlLDFxWDzSyHpsUF2wNRmLZ8-TfYmGAo2mLh_Ued5hC6s35KTXUdUmf72C8IhJ6zEZmrPOY2ms2mjOKOhtS0xXrMgn5hg4IJ_T9dsXQoqbD3w2wMd9XscdqqhRb8qxrWIqWyR7BpEAWx1Db1q3FspNZ0LuINu-DO_0-xbrkeB0iAyvVcrT5Nnj0zicobqqffMH0eH6qIweTmGv62QO-SPZONkOknJpV7Y5CnxKHLeX43S"/>
+<div class="absolute inset-0 hero-scrim"></div>
+<div class="absolute bottom-0 left-0 w-full px-12 pb-20 max-w-7xl mx-auto">
+<div class="badge badge-primary mb-6">Signature Atelier Series</div>
+<h1 class="font-headline text-6xl md:text-8xl font-bold tracking-tight text-on-surface mb-6 leading-none">
+                    Smoked Amber <br/><span class="italic font-normal text-primary">Old Fashioned</span>
+</h1>
+<div class="flex gap-4 items-center text-on-surface-variant font-label text-sm">
+<div class="badge badge-outline gap-1.5 py-1">
+<span class="material-symbols-outlined text-[1rem]" data-icon="timer">timer</span>
+                        Prep: 5 mins
+                    </div>
+<div class="badge badge-outline gap-1.5 py-1">
+<span class="material-symbols-outlined text-[1rem]" data-icon="local_bar">local_bar</span>
+                        Spirit-Forward
+                    </div>
+<div class="badge badge-outline gap-1.5 py-1">
+<span class="material-symbols-outlined text-[1rem]" data-icon="star" style="font-variation-settings: 'FILL' 1;">star</span>
+                        Master Class
+                    </div>
+</div>
+</div>
+</section>
+<!-- Content Sections: Bento Layout -->
+<section class="max-w-7xl mx-auto px-12 py-24">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+<!-- History & Story -->
+<div class="lg:col-span-7 space-y-12">
+<div class="space-y-6">
+<h2 class="font-headline text-4xl text-primary">The Heritage of the Glass</h2>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed">
+                            The Smoked Amber is more than a cocktail; it is a ritual. Originating from the private ateliers of the 1920s, this particular variation utilizes a cold-smoke technique with aged hickory to elevate the inherent caramel notes of single-barrel bourbon. 
+                        </p>
+<p class="font-body text-lg text-on-surface-variant leading-relaxed">
+                            The addition of hand-crafted cedarwood bitters bridges the gap between the smokiness and the bright zest of charred orange peel, creating a multi-sensory experience that evolves as the ice slowly yields to the spirit.
+                        </p>
+</div>
+<!-- Preparation Method Card -->
+<div class="card p-1">
+<div class="p-8">
+<h2 class="font-headline text-3xl text-on-surface mb-8">The Preparation</h2>
+<div class="space-y-8">
+<div class="flex items-start gap-8 group">
+<span class="font-headline text-4xl text-outline-variant group-hover:text-primary transition-colors mt-1">01</span>
+<div class="space-y-2">
+<h4 class="font-headline text-xl text-on-surface">The Infusion</h4>
+<p class="text-on-surface-variant leading-relaxed">Cold smoke the mixing glass using hickory wood chips for exactly 30 seconds to capture the essence without bitterness.</p>
+</div>
+</div>
+<div class="flex items-start gap-8 group">
+<span class="font-headline text-4xl text-outline-variant group-hover:text-primary transition-colors mt-1">02</span>
+<div class="space-y-2">
+<h4 class="font-headline text-xl text-on-surface">The Blend</h4>
+<p class="text-on-surface-variant leading-relaxed">Combine 2oz Bourbon, 1 barspoon of maple syrup, and 3 dashes of cedar bitters. Stir over large-format ice for 45 rotations.</p>
+</div>
+</div>
+<div class="flex items-start gap-8 group">
+<span class="font-headline text-4xl text-outline-variant group-hover:text-primary transition-colors mt-1">03</span>
+<div class="space-y-2">
+<h4 class="font-headline text-xl text-on-surface">The Garnish</h4>
+<p class="text-on-surface-variant leading-relaxed">Express charred orange oils over the rim and drop into the glass. Serve immediately while the smoke still clings to the crystal.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Sidebar Ingredients & Stats -->
+<div class="lg:col-span-5 space-y-8">
+<!-- Ingredients Card -->
+<div class="card p-1">
+<div class="p-8 space-y-6">
+<h3 class="font-headline text-2xl flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="restaurant_menu">restaurant_menu</span>
+                                Curated Ingredients
+                            </h3>
+<ul class="space-y-4 font-body">
+<li class="flex justify-between border-b border-outline-variant/20 pb-3">
+<span class="text-on-surface">Small Batch Bourbon</span>
+<span class="text-primary font-semibold">2.0 oz</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/20 pb-3">
+<span class="text-on-surface">Grade A Maple Syrup</span>
+<span class="text-primary font-semibold">1 tsp</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/20 pb-3">
+<span class="text-on-surface">Cedarwood Bitters</span>
+<span class="text-primary font-semibold">3 Dashes</span>
+</li>
+<li class="flex justify-between border-b border-outline-variant/20 pb-3">
+<span class="text-on-surface">Orange Peel</span>
+<span class="text-primary font-semibold">Charred</span>
+</li>
+<li class="flex justify-between pb-3">
+<span class="text-on-surface">Hickory Wood Smoke</span>
+<span class="text-primary font-semibold">Fresh</span>
+</li>
+</ul>
+<div class="pt-4 border-t border-outline-variant/20">
+<h4 class="font-label text-xs tracking-widest text-on-surface-variant uppercase mb-4">Aromatic Profile</h4>
+<div class="flex flex-wrap gap-2">
+<div class="badge badge-secondary">Herbal</div>
+<div class="badge badge-secondary">Woody</div>
+<div class="badge badge-secondary">Smoky</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Interaction Card -->
+<div class="card bg-gradient-to-br from-primary to-primary-container p-1 border-none shadow-2xl shadow-primary/20">
+<div class="p-8 text-on-primary">
+<h4 class="font-headline text-3xl mb-3">Private Atelier</h4>
+<p class="font-body text-base mb-8 opacity-90 leading-relaxed">Book a personal sommelier session to master the art of spirits and smoke at home.</p>
+<button class="w-full bg-on-primary text-primary font-label py-4 rounded-lg font-bold uppercase tracking-widest hover:brightness-110 transition-all active:scale-[0.98]">
+                                Schedule Workshop
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- Best Served With Section -->
+<section class="bg-surface-container-low/50 border-y border-outline-variant/10 py-24">
+<div class="max-w-7xl mx-auto px-12">
+<div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+<div class="max-w-2xl">
+<div class="badge badge-primary mb-4">Pairing Recommendations</div>
+<h2 class="font-headline text-5xl text-on-surface">Best Served With</h2>
+<p class="text-on-surface-variant mt-4 text-lg">Enhance the deep oak and caramel notes of the Smoked Amber with these curated small plates from our atelier kitchen.</p>
+</div>
+<a class="text-primary flex items-center gap-2 font-label group text-sm font-bold uppercase tracking-widest" href="#">
+                        View All Pairings 
+                        <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</a>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+<!-- Recipe Card 1 -->
+<div class="card group cursor-pointer transition-all hover:border-primary/50">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="Caramelized Fig Crostini" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuA8T5fEhxUAjYeIpm1VHIDDNWKRHodJfMyedntoqwayDDhcz-ZIKxDMjBfg-qXOwIHD6fxzF8251rMqWTeLWKf3On8108XtYFJbC8rOXbVxqvcgERXoe2CWASEB6y_RDniSLu6ueumWAgdetZAqx-bFGr3MKOrcqXmSj1-eagY-6DqtbM1y3_fCXc26gb_lsoBTCNV2E_zdsLQvruqPGHxTpB5MVXTzvatLQlfYWeWaPMFePvTXptYQLHsxVU1mRgnb8u14TvAaC-gr"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="p-6 space-y-3">
+<div class="flex flex-wrap gap-2">
+<div class="badge badge-secondary py-0 text-[10px]">Herbal</div>
+<div class="badge badge-outline py-0 text-[10px]">15 Min</div>
+</div>
+<h3 class="font-headline text-2xl text-on-surface">Honeyed Fig &amp; Chèvre</h3>
+<p class="text-on-surface-variant text-sm font-body line-clamp-2">Sweetness and tang to balance the heavy hickory smoke of the cocktail.</p>
+</div>
+</div>
+<!-- Recipe Card 2 -->
+<div class="card group cursor-pointer transition-all hover:border-primary/50">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="Aged Gouda Board" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuATf-1rCvJxqZLVci2wRbutvIlGlkaJ_gk_qH8QbsX4lQ9JFVSHlndvQCjMO5vx-m7awb1M7qWBu6tpqcHSw6X6tLUejRCrlqYlBY1hSdUXcdfCRVwKbQs3QPNn3PSmvYD-_B6O7N_APPPZ2vWps1D1oYjmkITAPybJhxI04EvaL8vBGhbhy1aG8Gwip7tcv1ssVLGNsFiAraWWyTg_u9rhvM6c0lsjeeTteHEAHFbX4PFnRh_zVYfqz18IicIKXGHHXCJDd9RwUZeI"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="p-6 space-y-3">
+<div class="flex flex-wrap gap-2">
+<div class="badge badge-secondary py-0 text-[10px]">Savory</div>
+<div class="badge badge-outline py-0 text-[10px]">No Cook</div>
+</div>
+<h3 class="font-headline text-2xl text-on-surface">12-Month Aged Gouda</h3>
+<p class="text-on-surface-variant text-sm font-body line-clamp-2">Crystalline textures and nutty undertones that mirror the bourbon's depth.</p>
+</div>
+</div>
+<!-- Recipe Card 3 -->
+<div class="card group cursor-pointer transition-all hover:border-primary/50">
+<div class="relative aspect-[4/5] overflow-hidden">
+<img alt="Dark Chocolate Truffles" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" src="https://lh3.googleusercontent.com/aida-public/AB6AXuDKq5DFum8wOhexlJK2dFM5AFCf9_TEHkVgKJfC8zhu_zqgqnQQEg-xlqzYSL2EnP1XadMyrMz76gqpWPA3bR44PBzRnt3UZF_hu9hXjEoyefjgcVNFmSZNDlutAxvHuVDZahh9KIrVlLjF4eoNR_yxWB8SyS3vU0cZL-ha1gcOpHvAdNStZDSkJ8IzMSUGCJ4l8ZiiUj1DMqsCIvQ9ZGv0daAJKsG4rf42YjMkAT9YAys8InIlgobcnihZEGHUGsGXqs6l4ov5WY7C"/>
+<div class="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors"></div>
+</div>
+<div class="p-6 space-y-3">
+<div class="flex flex-wrap gap-2">
+<div class="badge badge-secondary py-0 text-[10px]">Decadent</div>
+<div class="badge badge-outline py-0 text-[10px]">Atelier Made</div>
+</div>
+<h3 class="font-headline text-2xl text-on-surface">Sea Salt Cacao Ganache</h3>
+<p class="text-on-surface-variant text-sm font-body line-clamp-2">Bitter dark chocolate creates a dramatic finish to the spirit-forward profile.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Footer Component -->
+<footer class="w-full mt-20 bg-neutral-950 border-t border-white/5 flex flex-col md:flex-row justify-between items-center px-12 md:px-20 py-16 gap-8">
+<div class="flex flex-col gap-4 items-center md:items-start">
+<div class="text-xl font-serif text-amber-500">The Epicurean Lens</div>
+<p class="font-serif text-neutral-400 text-sm max-w-xs text-center md:text-left">Curating the intersection of craft spirits and culinary precision for the modern palate.</p>
+</div>
+<div class="flex gap-8">
+<a class="font-serif text-neutral-500 hover:text-amber-200 transition-colors text-sm uppercase tracking-widest" href="#">Journal</a>
+<a class="font-serif text-neutral-500 hover:text-amber-200 transition-colors text-sm uppercase tracking-widest" href="#">Newsletter</a>
+<a class="font-serif text-neutral-500 hover:text-amber-200 transition-colors text-sm uppercase tracking-widest" href="#">Privacy</a>
+<a class="font-serif text-neutral-500 hover:text-amber-200 transition-colors text-sm uppercase tracking-widest" href="#">Terms</a>
+</div>
+<div class="text-neutral-400 font-serif text-sm">
+            © 2024 The Epicurean Lens. All Rights Reserved.
+        </div>
+</footer>
+</body></html>

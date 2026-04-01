@@ -21,6 +21,19 @@ export async function fetchDrinksByLetter(letter: string): Promise<Drink[]> {
   return normalizeDrinksResponse(data);
 }
 
+export async function fetchDrinkById(id: string): Promise<Drink | null> {
+  const response = await fetch(`${API_BASE_URL}/lookup.php?i=${encodeURIComponent(id)}`);
+
+  if (!response.ok) {
+    throw new Error(`Failed to fetch drink: ${response.statusText}`);
+  }
+
+  const data: DrinksApiResponse = await response.json();
+  const drinks = normalizeDrinksResponse(data);
+
+  return drinks[0] ?? null;
+}
+
 export async function fetchDrinks(): Promise<Drink[]> {
   const response = await fetch(`${API_BASE_URL}/search.php?f=a`);
 
