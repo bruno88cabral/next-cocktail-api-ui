@@ -9,7 +9,7 @@ const NAV_LINKS = [
 export default function Header() {
   return (
     <header className="border-b border-zinc-200 bg-white dark:border-zinc-800 dark:bg-zinc-950">
-      <div className="mt-0 mb-0 ml-auto mr-auto flex h-16 w-[75%] items-center justify-between">
+      <div className="mx-auto flex h-16 max-w-[1400px] items-center justify-between px-6 md:px-12">
         <Link
           href="/"
           className="text-lg font-semibold tracking-tight text-zinc-900 dark:text-zinc-50"
